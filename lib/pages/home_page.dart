@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  static const routeName = "/testing";
+  static const routeName = "/home";
   const HomePage({super.key});
 
   @override
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const Expanded(
-            child: ListTrabsaksi(),
+            child: ListTransaksi(),
           ),
         ],
       ),

@@ -1,15 +1,16 @@
+import 'package:catatan_keuangan/pages/create_transaction_page.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ListTrabsaksi extends StatefulWidget {
-  const ListTrabsaksi({super.key});
+class ListTransaksi extends StatefulWidget {
+  const ListTransaksi({super.key});
 
   @override
-  State<ListTrabsaksi> createState() => _ListTrabsaksiState();
+  State<ListTransaksi> createState() => _ListTransaksiState();
 }
 
-class _ListTrabsaksiState extends State<ListTrabsaksi> {
+class _ListTransaksiState extends State<ListTransaksi> {
   @override
   Widget build(BuildContext context) {
     final trans = Provider.of<TransaksiProvider>(context).itemsTransaksi;
@@ -21,7 +22,7 @@ class _ListTrabsaksiState extends State<ListTrabsaksi> {
         return ListTile(
           title: Row(
             children: [
-              Text(transaksi.type),
+              Text(transaksi.categrory),
               const Text(" - "),
               Text(transaksi.nominal.toString())
             ],
@@ -29,8 +30,38 @@ class _ListTrabsaksiState extends State<ListTrabsaksi> {
           subtitle: Text(transaksi.note),
           trailing: Text(
             transaksi.waktu.toString(),
-            style: TextStyle(fontSize: 10),
+            style: const TextStyle(fontSize: 10),
           ),
+          onLongPress: () {
+            showDialog(
+              context: context,
+              builder: (ctx) => AlertDialog(
+                title: const Text('Delete Transaksi'),
+                content: Text(
+                    'Are you sure want to delete transaction ${transaksi.id}?'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Provider.of<TransaksiProvider>(context, listen: false)
+                          .delete(transaksi.id!);
+                      Navigator.pop(ctx);
+                    },
+                    child: const Text('Sure'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(ctx);
+                    },
+                    child: const Text('Cancel'),
+                  ),
+                ],
+              ),
+            );
+          },
+          onTap: () {
+            Navigator.of(context)
+                .pushNamed(CreateTransaction.routeName, arguments: transaksi);
+          },
         );
       },
       itemCount: trans.length,

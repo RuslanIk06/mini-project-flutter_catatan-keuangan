@@ -32,4 +32,38 @@ class TransaksiProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  // void update(Transaksi trans) async {
+  //   final targetIndex = _transaksi.indexWhere((item) => item.id == trans.id);
+  //   if (targetIndex != -1) {
+  //     final isSuccess = await _service.editTransaksi(trans);
+  //     if (isSuccess) {
+  //       _transaksi[targetIndex] = trans;
+  //       notifyListeners();
+  //     }
+  //   }
+  // }
+
+  void delete(String id) async {
+    final targetIndex = _transaksi.indexWhere((element) => element.id == id);
+    if (targetIndex != -1) {
+      final isSuccess = await _service.deleteTransaksi(id);
+      if (isSuccess) {
+        _transaksi.removeAt(targetIndex);
+        notifyListeners();
+      }
+    }
+  }
+
+  void update(Transaksi trans) async {
+    final targetIndex =
+        _transaksi.indexWhere((element) => element.id == trans.id);
+    if (targetIndex != -1) {
+      final isSuccess = await _service.editTransaksi(trans);
+      if (isSuccess) {
+        _transaksi[targetIndex] = trans;
+        notifyListeners();
+      }
+    }
+  }
 }
