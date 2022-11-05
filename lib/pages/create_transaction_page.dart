@@ -4,6 +4,7 @@ import 'package:catatan_keuangan/models/transaksi.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
 import 'package:catatan_keuangan/styles/colors_style.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CreateTransaction extends StatefulWidget {
@@ -27,6 +28,7 @@ class _CreateTransactionState extends State<CreateTransaction>
   final TextEditingController _ctrlNominal = TextEditingController();
   final TextEditingController _ctrlNote = TextEditingController();
   final TextEditingController _ctrlCategory = TextEditingController();
+  final TextEditingController _dueDate = TextEditingController();
   Transaksi? updateTransaksi;
 
   List<String> kategori = [
@@ -46,7 +48,6 @@ class _CreateTransactionState extends State<CreateTransaction>
   String _pilihanCategory = "Gaji";
   String _pilhanType = "";
 
-  DateTime _dueDate = DateTime.now();
   final currentDate = DateTime.now();
 
   void _pilihType(String value) {
@@ -61,7 +62,11 @@ class _CreateTransactionState extends State<CreateTransaction>
         type: transaksi['type'].toString(),
         categrory: transaksi["categrory"].toString(),
         nominal: int.parse(transaksi['nominal'].toString()),
-        note: transaksi["note"].toString());
+        note: transaksi["note"].toString(),
+        waktu: transaksi['waktu'].toString()
+        // waktu: DateTime.parse(transaksi['waktu'].toString()),
+        );
+
     // tambahContact(transaksiBaru);
     if (updateTransaksi != null) {
       transaksiBaru.id = updateTransaksi!.id;
@@ -71,6 +76,8 @@ class _CreateTransactionState extends State<CreateTransaction>
       Provider.of<TransaksiProvider>(context, listen: false).add(transaksiBaru);
     }
   }
+
+  String _value = "";
 
   @override
   Widget build(BuildContext context) {
@@ -91,18 +98,44 @@ class _CreateTransactionState extends State<CreateTransaction>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // RadioListTile(
-              //   value: "Pemasukan",
-              //   groupValue: _pilhanType,
-              //   title: Text("Pemaasukan"),
-              //   onChanged: (value) {
-              //     _pilhanType;
-              //   },
-              // ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: RadioListTile(
+                      value: "Pemasukan",
+                      title: const Text("Pemasukan"),
+                      groupValue: _value,
+                      onChanged: (type) {
+                        print(type);
+                        setState(() {
+                          _value = type!;
+                          transaksi['type'] = _value;
+                        });
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: RadioListTile(
+                      value: "Pengeluaran",
+                      title: const Text("Pengeluaran"),
+                      groupValue: _value,
+                      onChanged: (type) {
+                        print(type);
+                        setState(() {
+                          _value = type!;
+                          transaksi['type'] = _value;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text("kategori Transaksi"),
-                  const SizedBox(width: 20),
+                  const Text("-"),
                   DropdownButton(
                     value: _pilihanCategory,
                     items: kategori.map((String value) {
@@ -142,7 +175,7 @@ class _CreateTransactionState extends State<CreateTransaction>
               TextFormField(
                 decoration: const InputDecoration(
                   icon: Icon(Icons.note_add_rounded),
-                  label: Text('Note'),
+                  label: Text('Detail'),
                   hintText: 'Detail transaksi',
                 ),
                 validator: (value) {
@@ -154,33 +187,44 @@ class _CreateTransactionState extends State<CreateTransaction>
                 onSaved: (newValue) {
                   if (newValue != null) transaksi['note'] = newValue;
                 },
+                controller: _ctrlNote,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.next,
-                controller: _ctrlNote,
               ),
-              const SizedBox(height: 26),
-              Text("Date 1"),
-              TextButton(
-                  onPressed: () async {
-                    final selectDate = await showDatePicker(
-                      context: context,
-                      initialDate: currentDate,
-                      firstDate: DateTime(1990),
-                      lastDate: DateTime(currentDate.year + 5),
-                    );
-
-                    setState(() {
+              TextFormField(
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.timeline),
+                  label: Text('Waktu'),
+                  hintText: 'dd/MM/yyyy',
+                ),
+                textInputAction: TextInputAction.next,
+                controller: _dueDate,
+                onTap: () async {
+                  final selectDate = await showDatePicker(
+                    context: context,
+                    initialDate: currentDate,
+                    firstDate: DateTime(1990),
+                    lastDate: DateTime(currentDate.year + 5),
+                  );
+                  setState(
+                    () {
                       if (selectDate != null) {
-                        _dueDate = selectDate;
-
-                        transaksi['waktu'] = _dueDate;
+                        _dueDate.text =
+                            DateFormat("dd/MM/yyyy").format(selectDate);
                       }
-                    });
-                  },
-                  child: Text("Select")),
+                    },
+                  );
+                },
+                onSaved: (newValue) {
+                  if (newValue != null) {
+                    transaksi['waktu'] = newValue;
+                  }
+                },
+              ),
+              const SizedBox(height: 32),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: redColor,
                   foregroundColor: Colors.white,
                 ),
                 onPressed: () {
@@ -197,7 +241,7 @@ class _CreateTransactionState extends State<CreateTransaction>
                     Navigator.of(context).pop();
                   }
                 },
-                child: const Text('Simpan'),
+                child: Text(updateTransaksi != null ? 'Edit' : 'Tambah'),
               ),
             ],
           ),

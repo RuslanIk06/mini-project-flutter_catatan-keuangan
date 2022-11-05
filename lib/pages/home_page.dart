@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
           Navigator.pushNamed(context, CreateTransaction.routeName);
         },
         child: const Icon(Icons.add),
-        backgroundColor: greenColor,
+        backgroundColor: redColor,
       ),
     );
   }

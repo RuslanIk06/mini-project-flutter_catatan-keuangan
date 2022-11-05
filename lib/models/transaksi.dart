@@ -5,7 +5,7 @@ class Transaksi {
   final String categrory;
   final int nominal;
   final String note;
-  DateTime? waktu;
+  final String waktu;
 
   Transaksi({
     this.id,
@@ -13,20 +13,21 @@ class Transaksi {
     required this.categrory,
     required this.nominal,
     required this.note,
-    this.waktu,
+    required this.waktu,
   }) {
     // id = nanoid(15);
   }
 
   factory Transaksi.fromJson(Map<String, dynamic> json) => Transaksi(
-        id: json["id"].toString(),
-        type: json['type'],
-        categrory: json['categrory'],
-        nominal: json['nominal'],
-        note: json['note'],
-        waktu: DateTime.parse(
-          json["waktu"].toString(),
-        ),
+      id: json["id"].toString(),
+      type: json['type'],
+      categrory: json['categrory'],
+      nominal: json['nominal'],
+      note: json['note'],
+      waktu: json['waktu']
+      // waktu: DateTime.parse(
+      //   json["waktu"].toString(),
+      // ),
       );
 
   Map<String, dynamic> toJson() => {
@@ -35,8 +36,10 @@ class Transaksi {
         "categrory": categrory,
         "nominal": nominal,
         "note": note,
-        "waktu": waktu != null
-            ? waktu!.toIso8601String()
-            : DateTime.now().toIso8601String(),
+        "waktu": waktu,
+        // "waktu": waktu != null
+        //     ? waktu!.toIso8601String()
+        //     : DateTime.now().toIso8601String(),
+        // "waktu": waktu != null ? waktu!.toString() : DateTime.now().toString(),
       };
 }
