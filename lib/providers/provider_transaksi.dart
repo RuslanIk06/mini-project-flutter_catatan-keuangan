@@ -10,6 +10,7 @@ class TransaksiProvider with ChangeNotifier {
   TransaksiProvider() {
     _service = APITransaksi();
     _fetchDataTransaksi();
+    notifyListeners();
   }
 
   void _fetchDataTransaksi() async {
@@ -20,7 +21,7 @@ class TransaksiProvider with ChangeNotifier {
   List<Transaksi> get itemsTransaksi {
     var temp = [..._transaksi];
     temp.sort(
-      (a, b) => a.type.compareTo(b.type),
+      (a, b) => a.waktu.compareTo(b.waktu),
     );
     return temp;
   }
@@ -32,17 +33,6 @@ class TransaksiProvider with ChangeNotifier {
       notifyListeners();
     }
   }
-
-  // void update(Transaksi trans) async {
-  //   final targetIndex = _transaksi.indexWhere((item) => item.id == trans.id);
-  //   if (targetIndex != -1) {
-  //     final isSuccess = await _service.editTransaksi(trans);
-  //     if (isSuccess) {
-  //       _transaksi[targetIndex] = trans;
-  //       notifyListeners();
-  //     }
-  //   }
-  // }
 
   void delete(String id) async {
     final targetIndex = _transaksi.indexWhere((element) => element.id == id);

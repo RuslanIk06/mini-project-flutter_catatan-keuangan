@@ -87,6 +87,7 @@ class _CreateTransactionState extends State<CreateTransaction>
       _ctrlNote.text = updateTransaksi!.note;
     }
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: AppBar(
         title: Text(
             updateTransaksi != null ? 'Edit Transaksi' : 'Tambah Transaksi'),
@@ -121,7 +122,6 @@ class _CreateTransactionState extends State<CreateTransaction>
                       title: const Text("Pengeluaran"),
                       groupValue: _value,
                       onChanged: (type) {
-                        print(type);
                         setState(() {
                           _value = type!;
                           transaksi['type'] = _value;

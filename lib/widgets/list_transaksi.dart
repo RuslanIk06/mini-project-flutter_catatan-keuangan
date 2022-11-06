@@ -1,6 +1,5 @@
 import 'package:catatan_keuangan/pages/create_transaction_page.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
-import 'package:catatan_keuangan/styles/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,15 +20,11 @@ class _ListTransaksiState extends State<ListTransaksi> {
       itemBuilder: (context, index) {
         final transaksi = trans[index];
         return ListTile(
-          leading: transaksi.type == "pengeluaran"
-              ? Image.asset(
-                  "assets/images/icon_out.png",
-                  width: 24,
-                )
-              : Image.asset(
-                  "assets/images/icon_in.png",
-                  width: 24,
-                ),
+          leading: CircleAvatar(
+            child: transaksi.type == "Pemasukan"
+                ? Image.asset("assets/images/icon_in.png")
+                : Image.asset("assets/images/icon_out.png"),
+          ),
           title: Text(transaksi.categrory),
           subtitle: Text(transaksi.note),
           trailing: Column(
