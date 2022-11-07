@@ -36,7 +36,7 @@ class APITransaksi {
         print("keymap : $key:$value");
         transaksi.add(Transaksi(
           id: key.toString(),
-          type: value['type]'].toString(),
+          type: value['type'].toString(),
           categrory: value['categrory'].toString(),
           nominal: value['nominal'],
           note: value['note'].toString(),
@@ -55,7 +55,6 @@ class APITransaksi {
 
     if (response.data != null) {
       response.data.forEach((key, value) {
-        // final transaksiId = value['id'];
         final transaksiByKey = key;
         trans.id = transaksiByKey;
       });

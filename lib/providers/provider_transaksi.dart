@@ -5,7 +5,11 @@ import 'package:catatan_keuangan/services/api_transaksi.dart';
 class TransaksiProvider with ChangeNotifier {
   late APITransaksi _service;
   List<Transaksi> _transaksi = [];
-  // List<Transaksi> get transaksi => [..._transaksi];
+  List<Transaksi> get transaksi => [..._transaksi];
+  List<Transaksi> get getIncome =>
+      _transaksi.where((element) => element.type == "Pemasukan").toList();
+  List<Transaksi> get getExpense =>
+      _transaksi.where((element) => element.type == "Pengeluaran").toList();
 
   TransaksiProvider() {
     _service = APITransaksi();
