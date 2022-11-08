@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:catatan_keuangan/models/transaksi.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
 import 'package:catatan_keuangan/styles/colors_style.dart';
@@ -27,7 +25,6 @@ class _CreateTransactionState extends State<CreateTransaction>
   };
   final TextEditingController _ctrlNominal = TextEditingController();
   final TextEditingController _ctrlNote = TextEditingController();
-  final TextEditingController _ctrlCategory = TextEditingController();
   final TextEditingController _dueDate = TextEditingController();
   Transaksi? updateTransaksi;
 

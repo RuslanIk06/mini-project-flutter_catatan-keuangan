@@ -1,4 +1,6 @@
+import 'package:catatan_keuangan/pages/catatan_page.dart';
 import 'package:catatan_keuangan/pages/create_transaction_page.dart';
+import 'package:catatan_keuangan/pages/form_catatan_page.dart';
 import 'package:catatan_keuangan/pages/starter_page.dart';
 import 'package:catatan_keuangan/pages/home_page.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
@@ -6,8 +8,6 @@ import 'package:catatan_keuangan/styles/colors_style.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -41,7 +41,9 @@ class MyApp extends StatelessWidget {
         routes: {
           StarterPage.routeName: (context) => const StarterPage(),
           HomePage.routeName: (context) => const HomePage(),
-          CreateTransaction.routeName: (context) => CreateTransaction(),
+          CreateTransaction.routeName: (context) => const CreateTransaction(),
+          FormCatatan.routeName: (context) => const FormCatatan(),
+          Catatanpage.routeName: (context) => const Catatanpage(),
         },
       ),
     );

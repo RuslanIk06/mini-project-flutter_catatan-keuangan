@@ -1,6 +1,7 @@
+import 'package:catatan_keuangan/pages/catatan_page.dart';
 import 'package:catatan_keuangan/pages/create_transaction_page.dart';
+import 'package:catatan_keuangan/pages/form_catatan_page.dart';
 import 'package:catatan_keuangan/widgets/list_transaksi.dart';
-import 'package:catatan_keuangan/providers/provider_transaksi.dart';
 import 'package:catatan_keuangan/styles/colors_style.dart';
 import 'package:catatan_keuangan/widgets/list_transaksi_pemasukan.dart';
 import 'package:catatan_keuangan/widgets/list_transaksi_pengeluran.dart';
@@ -37,14 +38,41 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 60),
-                Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Text(
-                    "Hi Ruslan",
-                    style: TextStyle(color: whiteColor, fontSize: 24),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        "Hi Ruslan",
+                        style: TextStyle(color: whiteColor, fontSize: 24),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, FormCatatan.routeName);
+                          },
+                          icon: const Icon(
+                            Icons.notifications,
+                            color: whiteColor,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, Catatanpage.routeName);
+                          },
+                          icon: const Icon(
+                            Icons.note,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
               ],
             ),
           ),
@@ -71,20 +99,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   labelPadding: EdgeInsets.symmetric(horizontal: 30),
                   tabs: const [
                     Tab(
-                        child: Text("All Transaction",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold))),
+                      child: Text(
+                        "All Transaction",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     Tab(
-                        child: Text("Income",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold))),
+                      child: Text(
+                        "Income",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     Tab(
-                        child: Text("Expense",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold))),
+                      child: Text(
+                        "Expense",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ],
                 ),
               ),

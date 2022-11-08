@@ -1,6 +1,5 @@
 import 'package:catatan_keuangan/pages/create_transaction_page.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
-import 'package:catatan_keuangan/styles/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
