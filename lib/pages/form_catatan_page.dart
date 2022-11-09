@@ -1,4 +1,5 @@
 import 'package:catatan_keuangan/pages/catatan_page.dart';
+import 'package:catatan_keuangan/styles/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -54,10 +55,11 @@ class _FormCatatanState extends State<FormCatatan> {
         child: Form(
           key: formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
+                  icon: Icon(Icons.note_add_sharp),
                   label: Text('Catatan'),
                   hintText: 'Masukan Catatan',
                 ),
@@ -72,6 +74,7 @@ class _FormCatatanState extends State<FormCatatan> {
                 textInputAction: TextInputAction.next,
                 controller: _noteController,
               ),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   final isValidForm = formKey.currentState!.validate();
@@ -89,6 +92,10 @@ class _FormCatatanState extends State<FormCatatan> {
                   }
                 },
                 child: const Text('Tambah'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: redColor,
+                  foregroundColor: Colors.white,
+                ),
               ),
             ],
           ),

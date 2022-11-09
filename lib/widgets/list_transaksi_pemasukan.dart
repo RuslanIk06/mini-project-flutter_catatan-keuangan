@@ -14,6 +14,7 @@ class _ListTransaksiPemasukanState extends State<ListTransaksiPemasukan> {
   @override
   Widget build(BuildContext context) {
     final trans = Provider.of<TransaksiProvider>(context).getIncome;
+
     return ListView.separated(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
@@ -31,7 +32,7 @@ class _ListTransaksiPemasukanState extends State<ListTransaksiPemasukan> {
           trailing: Column(
             children: [
               Text(
-                "Rp. ${transaksi.nominal.toString()}",
+                "Rp. ${transaksi.nominal}",
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(

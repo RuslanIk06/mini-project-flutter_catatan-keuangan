@@ -25,10 +25,11 @@ class _CreateTransactionState extends State<CreateTransaction>
   };
   final TextEditingController _ctrlNominal = TextEditingController();
   final TextEditingController _ctrlNote = TextEditingController();
-  final TextEditingController _dueDate = TextEditingController();
+  final _dueDate = TextEditingController();
   Transaksi? updateTransaksi;
 
   List<String> kategori = [
+    'Pilih Kategory',
     'Gaji',
     'Tunjangan',
     'Hadiah',
@@ -42,8 +43,10 @@ class _CreateTransactionState extends State<CreateTransaction>
     'Uang Keluar',
   ];
 
-  String _pilihanCategory = "Gaji";
+  String _pilihanCategory = "Pilih Kategory";
   String _pilhanType = "";
+
+  int totalMasuk = 0;
 
   final currentDate = DateTime.now();
 
@@ -60,9 +63,7 @@ class _CreateTransactionState extends State<CreateTransaction>
         categrory: transaksi["categrory"].toString(),
         nominal: int.parse(transaksi['nominal'].toString()),
         note: transaksi["note"].toString(),
-        waktu: transaksi['waktu'].toString()
-        // waktu: DateTime.parse(transaksi['waktu'].toString()),
-        );
+        waktu: transaksi['waktu'].toString());
 
     // tambahContact(transaksiBaru);
     if (updateTransaksi != null) {
@@ -82,6 +83,7 @@ class _CreateTransactionState extends State<CreateTransaction>
     if (updateTransaksi != null) {
       _ctrlNominal.text = updateTransaksi!.nominal.toInt().toString();
       _ctrlNote.text = updateTransaksi!.note;
+      _dueDate.text = updateTransaksi!.waktu;
     }
     return Scaffold(
       backgroundColor: whiteColor,
@@ -197,17 +199,17 @@ class _CreateTransactionState extends State<CreateTransaction>
                 textInputAction: TextInputAction.next,
                 controller: _dueDate,
                 onTap: () async {
-                  final selectDate = await showDatePicker(
+                  DateTime? selectDate = await showDatePicker(
                     context: context,
                     initialDate: currentDate,
-                    firstDate: DateTime(1990),
+                    firstDate: DateTime(2000),
                     lastDate: DateTime(currentDate.year + 5),
                   );
                   setState(
                     () {
                       if (selectDate != null) {
                         _dueDate.text =
-                            DateFormat("dd/MM/yyyy").format(selectDate);
+                            DateFormat("EEEE, dd/MM/yyyy").format(selectDate);
                       }
                     },
                   );

@@ -24,11 +24,7 @@ class Transaksi {
       categrory: json['categrory'],
       nominal: json['nominal'],
       note: json['note'],
-      waktu: json['waktu']
-      // waktu: DateTime.parse(
-      //   json["waktu"].toString(),
-      // ),
-      );
+      waktu: json['waktu']);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -37,9 +33,5 @@ class Transaksi {
         "nominal": nominal,
         "note": note,
         "waktu": waktu,
-        // "waktu": waktu != null
-        //     ? waktu!.toIso8601String()
-        //     : DateTime.now().toIso8601String(),
-        // "waktu": waktu != null ? waktu!.toString() : DateTime.now().toString(),
       };
 }
