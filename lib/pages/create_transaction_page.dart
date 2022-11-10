@@ -1,6 +1,6 @@
 import 'package:catatan_keuangan/models/transaksi.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
-import 'package:catatan_keuangan/components/styles/colors_style.dart';
+import 'package:catatan_keuangan/components/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -223,7 +223,7 @@ class _CreateTransactionState extends State<CreateTransaction>
               const SizedBox(height: 32),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: redColor,
+                  backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
                 ),
                 onPressed: () {

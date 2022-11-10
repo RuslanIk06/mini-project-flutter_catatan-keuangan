@@ -3,7 +3,7 @@ import 'package:catatan_keuangan/pages/create_transaction_page.dart';
 import 'package:catatan_keuangan/pages/form_catatan_page.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
 import 'package:catatan_keuangan/widgets/list_transaksi.dart';
-import 'package:catatan_keuangan/components/styles/colors_style.dart';
+import 'package:catatan_keuangan/components/colors_style.dart';
 import 'package:catatan_keuangan/widgets/list_transaksi_pemasukan.dart';
 import 'package:catatan_keuangan/widgets/list_transaksi_pengeluran.dart';
 import 'package:catatan_keuangan/widgets/dashboard_transaksi.dart';

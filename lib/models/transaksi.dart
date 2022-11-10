@@ -1,6 +1,5 @@
 class Transaksi {
   String? id;
-  // late String id;
   final String type;
   final String categrory;
   final int nominal;

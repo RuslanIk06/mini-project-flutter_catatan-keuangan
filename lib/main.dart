@@ -4,7 +4,7 @@ import 'package:catatan_keuangan/pages/form_catatan_page.dart';
 import 'package:catatan_keuangan/pages/starter_page.dart';
 import 'package:catatan_keuangan/pages/home_page.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
-import 'package:catatan_keuangan/components/styles/colors_style.dart';
+import 'package:catatan_keuangan/components/colors_style.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

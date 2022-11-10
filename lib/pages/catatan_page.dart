@@ -1,6 +1,6 @@
 import 'package:catatan_keuangan/pages/form_catatan_page.dart';
 import 'package:catatan_keuangan/pages/home_page.dart';
-import 'package:catatan_keuangan/components/styles/colors_style.dart';
+import 'package:catatan_keuangan/components/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -67,7 +67,7 @@ class _CatatanpageState extends State<Catatanpage> {
                 icon: const Icon(Icons.home_filled),
                 label: const Text("Go To Home"),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: redColor,
+                  backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
                 ),
               )

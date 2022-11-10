@@ -1,10 +1,11 @@
 import 'package:catatan_keuangan/pages/catatan_page.dart';
 import 'package:catatan_keuangan/pages/form_catatan_page.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
+import 'package:catatan_keuangan/components/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../components/styles/colors_style.dart';
+import '../components/colors_style.dart';
 
 class DashboardTransaksi extends StatefulWidget {
   const DashboardTransaksi({super.key});

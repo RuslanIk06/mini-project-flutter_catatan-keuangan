@@ -1,5 +1,5 @@
 import 'package:catatan_keuangan/pages/catatan_page.dart';
-import 'package:catatan_keuangan/components/styles/colors_style.dart';
+import 'package:catatan_keuangan/components/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -58,6 +58,7 @@ class _FormCatatanState extends State<FormCatatan> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
+                key: const Key("catatan"),
                 decoration: const InputDecoration(
                   icon: Icon(Icons.note_add_sharp),
                   label: Text('Catatan'),
@@ -70,7 +71,7 @@ class _FormCatatanState extends State<FormCatatan> {
                   return null;
                 },
                 keyboardType: TextInputType.name,
-                maxLines: 5,
+                maxLines: 2,
                 textInputAction: TextInputAction.next,
                 controller: _noteController,
               ),
@@ -91,9 +92,9 @@ class _FormCatatanState extends State<FormCatatan> {
                         (route) => false);
                   }
                 },
-                child: const Text('Tambah'),
+                child: Text('Tambah'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: redColor,
+                  backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
                 ),
               ),

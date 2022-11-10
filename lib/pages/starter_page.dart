@@ -1,5 +1,5 @@
 import 'package:catatan_keuangan/pages/home_page.dart';
-import 'package:catatan_keuangan/components/styles/colors_style.dart';
+import 'package:catatan_keuangan/components/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
