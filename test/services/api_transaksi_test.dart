@@ -1,14 +1,12 @@
+import 'package:catatan_keuangan/firebase_options.dart';
 import 'package:catatan_keuangan/services/api_transaksi.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:rxdart/subjects.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-class MockFirebaseAuth extends Mock implements FirebaseAuth {}
-
-void main() {
-  MockFirebaseAuth _auth = MockFirebaseAuth();
-  BehaviorSubject<MockFirebaseAuth> auth = BehaviorSubject<MockFirebaseAuth>();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   group("all", () {
     test("Get All Transaction", () async {
@@ -16,4 +14,5 @@ void main() {
       expect(trans.isNotEmpty, true);
     });
   });
+
 }
