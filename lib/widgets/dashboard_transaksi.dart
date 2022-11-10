@@ -1,11 +1,10 @@
 import 'package:catatan_keuangan/pages/catatan_page.dart';
-import 'package:catatan_keuangan/pages/create_transaction_page.dart';
 import 'package:catatan_keuangan/pages/form_catatan_page.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../styles/colors_style.dart';
+import '../components/styles/colors_style.dart';
 
 class DashboardTransaksi extends StatefulWidget {
   const DashboardTransaksi({super.key});
@@ -83,7 +82,7 @@ class _DashboardTransaksiState extends State<DashboardTransaksi> {
               Column(
                 children: [
                   const Padding(
-                    padding: const EdgeInsets.only(left: 20),
+                    padding: EdgeInsets.only(left: 20),
                     child: Text(
                       "Total Income",
                       style: TextStyle(
@@ -95,7 +94,7 @@ class _DashboardTransaksiState extends State<DashboardTransaksi> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Text(
-                      "Rp. ${transaksiMasuk}",
+                      "Rp. $transaksiMasuk",
                       style: const TextStyle(
                           color: whiteColor,
                           fontSize: 18,
@@ -108,7 +107,7 @@ class _DashboardTransaksiState extends State<DashboardTransaksi> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Padding(
-                    padding: const EdgeInsets.only(right: 20),
+                    padding: EdgeInsets.only(right: 20),
                     child: Text(
                       "Total Expense",
                       style: TextStyle(
@@ -131,7 +130,7 @@ class _DashboardTransaksiState extends State<DashboardTransaksi> {
               ),
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

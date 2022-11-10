@@ -1,6 +1,6 @@
 import 'package:catatan_keuangan/models/transaksi.dart';
 import 'package:catatan_keuangan/providers/provider_transaksi.dart';
-import 'package:catatan_keuangan/styles/colors_style.dart';
+import 'package:catatan_keuangan/components/styles/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';

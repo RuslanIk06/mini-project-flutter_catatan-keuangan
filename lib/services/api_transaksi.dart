@@ -25,7 +25,7 @@ class APITransaksi {
     );
   }
 
-  Future<List<Transaksi>> getAllTransaksi() async {
+  Future <List<Transaksi>> getAllTransaksi() async {
     final response = await _dio.get("$baseUrl/$_userID/list_transaksi.json");
 
     List<Map<String, dynamic>> transaksi = [];

@@ -1,5 +1,5 @@
 import 'package:catatan_keuangan/pages/home_page.dart';
-import 'package:catatan_keuangan/styles/colors_style.dart';
+import 'package:catatan_keuangan/components/styles/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -54,7 +54,24 @@ class StarterPage extends StatelessWidget {
                   child: Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, HomePage.routeName);
+                        Navigator.of(context).push(
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return const HomePage();
+                            },
+                            transitionsBuilder: ((context, animation,
+                                secondaryAnimation, child) {
+                              final tween =
+                                  Tween(begin: Offset(0, 1), end: Offset.zero);
+                              return RotationTransition(
+                                turns: CurvedAnimation(
+                                    parent: animation, curve: Curves.linear),
+                                child: child,
+                              );
+                            }),
+                          ),
+                        );
                       },
                       child: Text(
                         "          Get Started          ",
