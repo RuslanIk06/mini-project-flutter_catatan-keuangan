@@ -3,27 +3,29 @@ import 'package:catatan_keuangan/providers/provider_transaksi.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ListTransaksi extends StatefulWidget {
-  const ListTransaksi({super.key});
+class ListTransaksiPengeluaran extends StatefulWidget {
+  const ListTransaksiPengeluaran({super.key});
 
   @override
-  State<ListTransaksi> createState() => _ListTransaksiState();
+  State<ListTransaksiPengeluaran> createState() =>
+      _ListTransaksiPengeluaranState();
 }
 
-class _ListTransaksiState extends State<ListTransaksi> {
+class _ListTransaksiPengeluaranState extends State<ListTransaksiPengeluaran> {
   @override
   Widget build(BuildContext context) {
-    final trans = Provider.of<TransaksiProvider>(context).itemsTransaksi;
+    final trans = Provider.of<TransaksiProvider>(context).getExpense;
     return ListView.separated(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
       itemBuilder: (context, index) {
         final transaksi = trans[index];
+
         return ListTile(
           leading: CircleAvatar(
-            child: transaksi.type == "Pemasukan"
-                ? Image.asset("assets/images/icon_in.png")
-                : Image.asset("assets/images/icon_out.png"),
+            child: Image.asset(
+              "assets/images/icon_out.png",
+            ),
           ),
           title: Text(transaksi.categrory),
           subtitle: Text(transaksi.note),

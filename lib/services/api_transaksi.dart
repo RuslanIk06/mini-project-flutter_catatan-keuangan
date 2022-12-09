@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:catatan_keuangan/models/transaksi.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/rendering.dart';
 
 class APITransaksi {
   late Dio _dio;
@@ -26,22 +25,6 @@ class APITransaksi {
     );
   }
 
-  // Future<List<Transaksi>> getAllTransaksi() async {
-  //   final response = await _dio.get("$baseUrl/$_userID/list_transaksi.json");
-
-  //   List<Map<String, dynamic>> transaksi = [];
-
-  //   if (response.data != null) {
-  //     response.data.forEach((key, value) {
-  //       print("keymap : $key:$value");
-  //       transaksi.add(value);
-  //     });
-  //     return List<Transaksi>.from(
-  //         transaksi.map((e) => Transaksi.fromJson(e)).toList());
-  //   }
-  //   return [];
-  // }
-
   Future<List<Transaksi>> getAllTransaksi() async {
     final response = await _dio.get("$baseUrl/$_userID/list_transaksi.json");
 
@@ -51,12 +34,13 @@ class APITransaksi {
       response.data.forEach((key, value) {
         print("keymap : $key:$value");
         transaksi.add(Transaksi(
-                id: key.toString(),
-                type: value['type]'].toString(),
-                categrory: value['categrory'].toString(),
-                nominal: value['nominal'],
-                note: value['note'])
-            .toJson());
+          id: key.toString(),
+          type: value['type'].toString(),
+          categrory: value['categrory'].toString(),
+          nominal: value['nominal'],
+          note: value['note'].toString(),
+          waktu: value!['waktu'],
+        ).toJson());
       });
       return List<Transaksi>.from(
           transaksi.map((e) => Transaksi.fromJson(e)).toList());
@@ -70,7 +54,6 @@ class APITransaksi {
 
     if (response.data != null) {
       response.data.forEach((key, value) {
-        // final transaksiId = value['id'];
         final transaksiByKey = key;
         trans.id = transaksiByKey;
       });
@@ -79,8 +62,6 @@ class APITransaksi {
   }
 
   Future<bool> deleteTransaksi(String id) async {
-    // getUserID();
-
     final response =
         await _dio.delete("$baseUrl/$_userID/list_transaksi/$id.json");
     return true;
